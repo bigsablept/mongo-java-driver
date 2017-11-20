@@ -257,9 +257,9 @@
 
 <h2 id="authentication">Authentication</h2>
 
-<p>The Java driver supports all <a href="http://docs.mongodb.org/manualcore/authentication/
+<p>The Java driver supports all <a href="http://docs.mongodb.org/manual/core/authentication/
 ">MongoDB authentication mechanisms</a>, including those only available in the
-<a href="http://docs.mongodb.org/manualadministration/install-enterprise/
+<a href="http://docs.mongodb.org/manual/administration/install-enterprise/
 ">MongoDB Enterprise Edition</a>.</p>
 
 <h2 id="mongocredential"><code>MongoCredential</code></h2>
@@ -294,9 +294,9 @@ completeness, the driver accepts a list of credentials.</p>
 <h2 id="default-authentication-mechanism">Default Authentication Mechanism</h2>
 
 <p>Starting in MongoDB 3.0, MongoDB changed the default authentication
-mechanism from <a href="http://docs.mongodb.org/manualcore/security-mongodb-cr
+mechanism from <a href="http://docs.mongodb.org/manual/core/security-mongodb-cr
 "><code>MONGODB-CR</code></a> to
-<a href="http://docs.mongodb.org/manualcore/security-scram-sha-1
+<a href="http://docs.mongodb.org/manual/core/security-scram-sha-1
 "><code>SCRAM-SHA-1</code></a>.</p>
 
 <p>To create a credential that will authenticate using the default
@@ -324,12 +324,12 @@ MongoClient mongoClient = new MongoClient(uri);
 <p>For challenge and response mechanisms, using the default authentication
 mechanism is the recommended approach as the approach will make
 upgrading from MongoDB 2.6 to MongoDB 3.0 seamless, even after
-<a href="http://docs.mongodb.org/manualrelease-notes/3.0-scram/
+<a href="http://docs.mongodb.org/manual/release-notes/3.0-scram/
 ">upgrading the authentication schema</a>.</p>
 
 <h2 id="scram-sha-1">SCRAM-SHA-1</h2>
 
-<p>To explicitly create a credential of type <a href="http://docs.mongodb.org/manualcore/security-scram-sha-1/
+<p>To explicitly create a credential of type <a href="http://docs.mongodb.org/manual/core/security-scram-sha-1/
 "><code>SCRAM-SHA-1</code></a>, use the <a href="/mongo-java-driver/3.6/javadoc?com/mongodb/MongoCredential.html#createScramSha1Credential-java.lang.String-java.lang.String-char:A-
 "><code>createScramSha1Credential</code></a> method:</p>
 
@@ -354,7 +354,7 @@ MongoClient mongoClient = new MongoClient(uri);
 
 <h2 id="mongodb-cr">MONGODB-CR</h2>
 
-<p>To explicitly create a credential of type <a href="http://docs.mongodb.org/manualcore/security-mongodb-cr
+<p>To explicitly create a credential of type <a href="http://docs.mongodb.org/manual/core/security-mongodb-cr
 "><code>MONGODB-CR</code></a> use the <a href="/mongo-java-driver/3.6/javadoc?com/mongodb/MongoCredential.html#createMongoCRCredential-java.lang.String-java.lang.String-char:A-
 "><code>createMongCRCredential</code></a>
 static factory method:</p>
@@ -379,7 +379,7 @@ MongoClient mongoClient = new MongoClient(uri);
 
 <div class="admonition note">
 <h5 class="admonition-title">Note</h5>
-<p>After the <a href="http://docs.mongodb.org/manualrelease-notes/3.0-scram/">authentication schema upgrade</a> from MONGODB-CR to SCRAM-SHA-1,
+<p>After the <a href="http://docs.mongodb.org/manual/release-notes/3.0-scram/">authentication schema upgrade</a> from MONGODB-CR to SCRAM-SHA-1,
 MONGODB-CR credentials will fail to authenticate.</p>
 
 </div>
@@ -387,7 +387,7 @@ MONGODB-CR credentials will fail to authenticate.</p>
 
 <h2 id="x-509">X.509</h2>
 
-<p>With <a href="http://docs.mongodb.org/manualcore/security-x.509
+<p>With <a href="http://docs.mongodb.org/manual/core/security-x.509
 ">X.509</a> mechanism, MongoDB uses the
 X.509 certificate presented during SSL negotiation to
 authenticate a user whose name is derived from the distinguished name

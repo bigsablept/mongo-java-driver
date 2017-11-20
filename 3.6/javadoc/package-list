@@ -22,6 +22,7 @@ com.mongodb.gridfs
 com.mongodb.management
 com.mongodb.operation
 com.mongodb.selector
+com.mongodb.session
 com.mongodb.util
 org.bson
 org.bson.assertions

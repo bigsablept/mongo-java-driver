@@ -257,8 +257,8 @@
 
 <h2 id="create-indexes">Create Indexes</h2>
 
-<p><a href="http://docs.mongodb.org/manualindexes
-">Indexes</a> support the efficient execution of queries in MongoDB. To create an <a href="http://docs.mongodb.org/manualindexes
+<p><a href="http://docs.mongodb.org/manual/indexes
+">Indexes</a> support the efficient execution of queries in MongoDB. To create an <a href="http://docs.mongodb.org/manual/indexes
 ">index</a> on a field or fields, pass an index specification document to the <a href="/mongo-java-driver/3.6/javadoc?com/mongodb/client/MongoCollection.html#createIndex-org.bson.conversions.Bson-
 "><code>MongoCollection.createIndex()</code></a> method.</p>
 
@@ -319,7 +319,7 @@ MongoCollection&lt;Document&gt; collection = database.getCollection(&quot;restau
 
 <h3 id="compound-ascending-index">Compound Ascending Index</h3>
 
-<p>The following example creates an ascending <a href="http://docs.mongodb.org/manualcore/index-compound
+<p>The following example creates an ascending <a href="http://docs.mongodb.org/manual/core/index-compound
 ">compound index</a>  on the <code>stars</code> field and the <code>name</code>
  field:</p>
 
@@ -342,7 +342,7 @@ MongoCollection&lt;Document&gt; collection = database.getCollection(&quot;restau
 
 <h3 id="compound-descending-key-index">Compound Descending Key Index</h3>
 
-<p>The following example creates a descending <a href="http://docs.mongodb.org/manualcore/index-compound
+<p>The following example creates a descending <a href="http://docs.mongodb.org/manual/core/index-compound
 ">compound index</a> on the <code>stars</code> field and the <code>name</code> field:</p>
 
 <pre><code class="language-java">collection.createIndex(Indexes.descending(&quot;stars&quot;, &quot;name&quot;));
@@ -352,7 +352,7 @@ MongoCollection&lt;Document&gt; collection = database.getCollection(&quot;restau
 
 <h2 id="compound-indexes">Compound Indexes</h2>
 
-<p>To create a specification for a <a href="http://docs.mongodb.org/manualcore/index-compound
+<p>To create a specification for a <a href="http://docs.mongodb.org/manual/core/index-compound
 ">compound index</a>, use the <a href="/mongo-java-driver/3.6/javadoc?com/mongodb/client/model/Indexes.html
 "><code>Indexes.compoundIndex</code></a> static helper methods.</p>
 
@@ -370,7 +370,7 @@ MongoCollection&lt;Document&gt; collection = database.getCollection(&quot;restau
 
 <h2 id="text-indexes">Text Indexes</h2>
 
-<p>MongoDB provides <a href="http://docs.mongodb.org/manualcore/index-text
+<p>MongoDB provides <a href="http://docs.mongodb.org/manual/core/index-text
 ">text indexes</a> to support text search of string content. Text indexes can include any field whose value is a string or an array of string elements. To create a specification for a text index, use the
 <a href="/mongo-java-driver/3.6/javadoc?com/mongodb/client/model/Indexes.html#text-java.lang.String-
 "><code>Indexes.text</code></a> static helper method.</p>
@@ -382,7 +382,7 @@ MongoCollection&lt;Document&gt; collection = database.getCollection(&quot;restau
 
 <h2 id="hashed-index">Hashed Index</h2>
 
-<p>To create a specification for a <a href="http://docs.mongodb.org/manualcore/index-hashed
+<p>To create a specification for a <a href="http://docs.mongodb.org/manual/core/index-hashed
 ">hashed index</a> index, use the <a href="/mongo-java-driver/3.6/javadoc?com/mongodb/client/model/Indexes.html#hashed-java.lang.String-
 "><code>Indexes.hashed</code></a> static helper method.</p>
 
@@ -394,12 +394,12 @@ MongoCollection&lt;Document&gt; collection = database.getCollection(&quot;restau
 <h2 id="geospatial-indexes">Geospatial Indexes</h2>
 
 <p>To support geospatial queries, MongoDB supports various
-<a href="http://docs.mongodb.org/manualapplications/geospatial-indexes
+<a href="http://docs.mongodb.org/manual/applications/geospatial-indexes
 ">geospatial indexes</a>.</p>
 
 <h3 id="2dsphere"><code>2dsphere</code></h3>
 
-<p>To create a specification for a <a href="http://docs.mongodb.org/manualcore/2dsphere
+<p>To create a specification for a <a href="http://docs.mongodb.org/manual/core/2dsphere
 "><code>2dsphere</code> index</a>, use the <a href="/mongo-java-driver/3.6/javadoc?com/mongodb/client/model/Indexes.html#geo2dsphere-java.lang.String...-
 "><code>Indexes.geo2dsphere</code></a> static helper methods.</p>
 
@@ -410,7 +410,7 @@ MongoCollection&lt;Document&gt; collection = database.getCollection(&quot;restau
 
 <h3 id="2d"><code>2d</code></h3>
 
-<p>To create a specification for a <a href="http://docs.mongodb.org/manualcore/2d/
+<p>To create a specification for a <a href="http://docs.mongodb.org/manual/core/2d/
 "><code>2d</code> index</a> index, use the <a href="/mongo-java-driver/3.6/javadoc?com/mongodb/client/model/Indexes.html#geo2d-java.lang.String-
 "><code>Indexes.geo2d</code></a>
 static helper method.</p>
@@ -431,7 +431,7 @@ earlier.</p>
 
 <h3 id="geohaystack">geoHaystack</h3>
 
-<p>To create a specification for a <a href="http://docs.mongodb.org/manualcore/geohaystack/
+<p>To create a specification for a <a href="http://docs.mongodb.org/manual/core/geohaystack/
 "><code>geoHaystack</code> index</a>, use the <a href="/mongo-java-driver/3.6/javadoc?com/mongodb/client/model/Indexes.html#geoHaystack-java.lang.String-org.bson.conversions.Bson-
 "><code>Indexes.geoHaystack</code></a> method. <code>geoHaystack</code> indexes can improve performance on queries that use flat geometries.</p>
 
@@ -443,7 +443,7 @@ collection.createIndex(
          haystackOption);
 </code></pre>
 
-<p>To query a haystack index, use the <a href="http://docs.mongodb.org/manualreference/command/geoSearch
+<p>To query a haystack index, use the <a href="http://docs.mongodb.org/manual/reference/command/geoSearch
 "><code>geoSearch</code></a> command.</p>
 
 <h2 id="indexoptions">IndexOptions</h2>
@@ -461,19 +461,19 @@ collection.createIndex(
 <h3 id="unique-index">Unique Index</h3>
 
 <p>The following specifies a <a href="/mongo-java-driver/3.6/javadoc?com/mongodb/client/model/IndexOptions.html#unique-boolean-
-"><code>unique(true)</code></a> option to create a <a href="http://docs.mongodb.org/manualcore/index-unique
+"><code>unique(true)</code></a> option to create a <a href="http://docs.mongodb.org/manual/core/index-unique
 ">unique index</a> on the <code>name</code> and <code>stars</code> fields:</p>
 
 <pre><code class="language-java">IndexOptions indexOptions = new IndexOptions().unique(true);
 collection.createIndex(Indexes.ascending(&quot;name&quot;, &quot;stars&quot;), indexOptions);
 </code></pre>
 
-<p>For more information on unique indexes, see <a href="http://docs.mongodb.org/manualcore/index-unique
+<p>For more information on unique indexes, see <a href="http://docs.mongodb.org/manual/core/index-unique
 ">Unique Indexes</a>.</p>
 
 <h3 id="partial-index">Partial Index</h3>
 
-<p>To create a <a href="http://docs.mongodb.org/manualcore/index-partial/
+<p>To create a <a href="http://docs.mongodb.org/manual/core/index-partial/
 ">partial index</a>, include a <a href="/mongo-java-driver/3.6/javadoc?com/mongodb/client/model/IndexOptions.html#partialFilterExpression-org.bson.conversions.Bson-
 ">partialFilterExpression</a> as an index option.</p>
 
@@ -485,7 +485,7 @@ collection.createIndex(
                 Indexes.descending(&quot;name&quot;, &quot;stars&quot;), partialFilterIndexOptions);
 </code></pre>
 
-<p>For more information on partial indexes, see <a href="http://docs.mongodb.org/manualcore/index-partial/
+<p>For more information on partial indexes, see <a href="http://docs.mongodb.org/manual/core/index-partial/
 ">Partial Indexes</a>.</p>
 
 <h2 id="get-a-list-of-indexes-on-a-collection">Get a List of Indexes on a Collection</h2>
@@ -497,7 +497,7 @@ collection.createIndex(
 }
 </code></pre>
 
-<p>For other index options, see <a href="http://docs.mongodb.org/manualcore/index-properties
+<p>For other index options, see <a href="http://docs.mongodb.org/manual/core/index-properties
 ">MongoDB Manual</a> .</p>
 <div id="btnv"><div class="pull-left">
   <a class="navigation prev" href="/mongo-java-driver/3.6/driver/tutorials/databases-collections/">

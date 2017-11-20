@@ -257,7 +257,7 @@
 
 <h2 id="run-commands">Run Commands</h2>
 
-<p>Not all commands have a specific helper. However you can run any <a href="http://docs.mongodb.org/manualreference/command
+<p>Not all commands have a specific helper. However you can run any <a href="http://docs.mongodb.org/manual/reference/command
 ">MongoDB command</a> by using the MongoDatabase&rsquo;s <a href="/mongo-java-driver/3.6/javadoc?com/mongodb/client/MongoDatabase.html#runCommand-org.bson.conversions.Bson-com.mongodb.ReadPreference-
 "><code>runCommand()</code></a> method.</p>
 
@@ -292,8 +292,8 @@ MongoDatabase database = mongoClient.getDatabase(&quot;test&quot;);
 "><code>Document</code></a>
 object that specifies the command and pass it to the <code>runCommand()</code> method.</p>
 
-<p>The following runs the <a href="http://docs.mongodb.org/manualreference/command/buildInfo
-"><code>buildInfo</code></a> command and the <a href="http://docs.mongodb.org/manualreference/command/collStats
+<p>The following runs the <a href="http://docs.mongodb.org/manual/reference/command/buildInfo
+"><code>buildInfo</code></a> command and the <a href="http://docs.mongodb.org/manual/reference/command/collStats
 "><code>collStats</code></a> command:</p>
 
 <pre><code class="language-java">Document buildInfoResults = database.runCommand(new Document(&quot;buildInfo&quot;, 1));
@@ -303,7 +303,7 @@ Document collStatsResults = database.runCommand(new Document(&quot;collStats&quo
 System.out.println(collStatsResults.toJson());
 </code></pre>
 
-<p>For a list of available MongoDB commands, see <a href="http://docs.mongodb.org/manualreference/command
+<p>For a list of available MongoDB commands, see <a href="http://docs.mongodb.org/manual/reference/command
 ">MongoDB commands</a>.</p>
 <div id="btnv"><div class="pull-left">
   <a class="navigation prev" href="/mongo-java-driver/3.6/driver/tutorials/gridfs/">

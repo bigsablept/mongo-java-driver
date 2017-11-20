@@ -257,7 +257,7 @@
 
 <h2 id="change-streams-draft">Change Streams - Draft</h2>
 
-<p>MongoDB 3.6 introduces a new <a href="https://docs.mongodb.com/manual/operator/aggregation/changeStream"><code>$changeStream</code></a> aggregation pipeline
+<p>MongoDB 3.6 introduces a new <a href="http://dochub.mongodb.org/core/changestreams"><code>$changeStream</code></a> aggregation pipeline
 operator.</p>
 
 <p>Change streams provide a way to watch changes to documents in a collection. To improve the usability of this new stage, the
@@ -320,15 +320,15 @@ MongoCollection&lt;Document&gt; collection = database.getCollection(&quot;restau
 
 <h2 id="filtering-content">Filtering content</h2>
 
-<p>The <code>watch</code> method can also be passed a list of <a href="http://docs.mongodb.org/manualmeta/aggregation-quick-reference
+<p>The <code>watch</code> method can also be passed a list of <a href="http://docs.mongodb.org/manual/meta/aggregation-quick-reference
 ">aggregation stages</a>, that can modify
 the data returned by the <code>$changeStream</code> operator. Note: not all aggregation operators are supported. See the
-<a href="https://docs.mongodb.com/manual/operator/aggregation/changeStream"><code>$changeStream</code></a> documentation for more information.</p>
+<a href="http://dochub.mongodb.org/core/changestreams"><code>$changeStream</code></a> documentation for more information.</p>
 
 <p>In the following example the change stream prints out all changes it observes, for <code>insert</code>, <code>update</code>, <code>replace</code> and <code>delete</code> operations:</p>
 
 <ul>
-<li><p>First it uses a <a href="http://docs.mongodb.org/manualreference/operator/aggregation/match/
+<li><p>First it uses a <a href="http://docs.mongodb.org/manual/reference/operator/aggregation/match/
 "><code>$match</code></a> stage to filter for documents where the <code>operationType</code>
 is either an <code>insert</code>, <code>update</code>, <code>replace</code> or <code>delete</code>.</p></li>
 

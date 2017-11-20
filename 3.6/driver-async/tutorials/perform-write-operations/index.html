@@ -402,7 +402,7 @@ collection.insertMany(documents, new SingleResultCallback&lt;Void&gt;() {
 
 <h3 id="update-operators">Update Operators</h3>
 
-<p>To change a field in a document, MongoDB provides <a href="http://docs.mongodb.org/manualreference/operator/update
+<p>To change a field in a document, MongoDB provides <a href="http://docs.mongodb.org/manual/reference/operator/update
 ">update operators</a>.  To specify the modification to perform using the update operators, use an updates document.</p>
 
 <p>To facilitate the creation of updates documents, the Java driver provides the <a href="/mongo-java-driver/3.6/javadoc?com/mongodb/client/model/Updates.html
@@ -485,8 +485,8 @@ collection.insertMany(documents, new SingleResultCallback&lt;Void&gt;() {
 <p>With the <a href="/mongo-java-driver/3.6/javadoc?com/mongodb/async/client/MongoCollection.html#updateOne-org.bson.conversions.Bson-org.bson.conversions.Bson-com.mongodb.client.model.UpdateOptions-com.mongodb.async.SingleResultCallback-
 "><code>updateOne()</code></a>  and  <a href="/mongo-java-driver/3.6/javadoc?com/mongodb/async/client/MongoCollection.html#updateMany-org.bson.conversions.Bson-org.bson.conversions.Bson-com.mongodb.client.model.UpdateOptions-com.mongodb.async.SingleResultCallback-
 "><code>updateMany</code></a> methods, you can include an <a href="/mongo-java-driver/3.6/javadoc?com/mongodb/client/model/UpdateOptions.html
-"><code>UpdateOptions</code></a> document to specify the <a href="http://docs.mongodb.org/manualreference/method/db.collection.update/#upsert-option
-"><code>upsert</code></a> option or the <a href="http://docs.mongodb.org/manualcore/document-validation/#bypass-document-validation
+"><code>UpdateOptions</code></a> document to specify the <a href="http://docs.mongodb.org/manual/reference/method/db.collection.update/#upsert-option
+"><code>upsert</code></a> option or the <a href="http://docs.mongodb.org/manual/core/document-validation/#bypass-document-validation
 "><code>bypassDocumentationValidation</code></a> option.</p>
 
 <pre><code class="language-java">collection.updateOne(
@@ -558,8 +558,8 @@ collection.insertMany(documents, new SingleResultCallback&lt;Void&gt;() {
 
 <p>With the <a href="/mongo-java-driver/3.6/javadoc?com/mongodb/async/client/MongoCollection.html#replaceOne-org.bson.conversions.Bson-TDocument-com.mongodb.client.model.UpdateOptions-com.mongodb.async.SingleResultCallback-
 "><code>replaceOne</code></a> method, you can include an <a href="/mongo-java-driver/3.6/javadoc?com/mongodb/client/model/UpdateOptions.html
-"><code>UpdateOptions</code></a> document to specify the <a href="http://docs.mongodb.org/manualreference/method/db.collection.update/#upsert-option
-"><code>upsert</code></a> option or the <a href="http://docs.mongodb.org/manualcore/document-validation/#bypass-document-validation
+"><code>UpdateOptions</code></a> document to specify the <a href="http://docs.mongodb.org/manual/reference/method/db.collection.update/#upsert-option
+"><code>upsert</code></a> option or the <a href="http://docs.mongodb.org/manual/core/document-validation/#bypass-document-validation
 "><code>bypassDocumentationValidation</code></a> option.</p>
 
 <pre><code class="language-java">collection.replaceOne(
@@ -626,10 +626,10 @@ collection.insertMany(documents, new SingleResultCallback&lt;Void&gt;() {
 
 <h2 id="write-concern">Write Concern</h2>
 
-<p><a href="http://docs.mongodb.org/manualreference/write-concern
+<p><a href="http://docs.mongodb.org/manual/reference/write-concern
 ">Write concern</a> describes the level of acknowledgement requested from MongoDB for write operations.</p>
 
-<p>Applications can configure <a href="http://docs.mongodb.org/manualreference/write-concern
+<p>Applications can configure <a href="http://docs.mongodb.org/manual/reference/write-concern
 ">write concern</a> at three levels:</p>
 
 <ul>
@@ -694,8 +694,8 @@ collection.insertMany(documents, new SingleResultCallback&lt;Void&gt;() {
                                                   .withWriteConcern(WriteConcern.MAJORITY);
 </code></pre>
 
-<p>You can build <code>MongoClientOptions</code>, <code>MongoDatabase</code>, or <code>MongoCollection</code> to include a combination of write concern, <a href="http://docs.mongodb.org/manualreference/read-concern
-">read concern</a>, and <a href="http://docs.mongodb.org/manualreference/read-preference
+<p>You can build <code>MongoClientOptions</code>, <code>MongoDatabase</code>, or <code>MongoCollection</code> to include a combination of write concern, <a href="http://docs.mongodb.org/manual/reference/read-concern
+">read concern</a>, and <a href="http://docs.mongodb.org/manual/reference/read-preference
 ">read preference</a>.</p>
 
 <p>For example, the following sets all three at the collection level:</p>

@@ -257,9 +257,9 @@
 
 <h2 id="text-search">Text Search</h2>
 
-<p>MongoDB supports query operations that perform a <a href="http://docs.mongodb.org/manualtext-search
-">text search</a> of string content. To perform text search, MongoDB uses a <a href="http://docs.mongodb.org/manualcore/index-text
-">text index</a> and the <a href="http://docs.mongodb.org/manualreference/operator/query/text
+<p>MongoDB supports query operations that perform a <a href="http://docs.mongodb.org/manual/text-search
+">text search</a> of string content. To perform text search, MongoDB uses a <a href="http://docs.mongodb.org/manual/core/index-text
+">text index</a> and the <a href="http://docs.mongodb.org/manual/reference/operator/query/text
 "><code>$text</code> query operator</a>.</p>
 
 <p>The Java driver provides the <a href="/mongo-java-driver/3.6/javadoc?com/mongodb/client/model/Filters.html#text-java.lang.String-com.mongodb.client.model.TextSearchOptions-
@@ -310,7 +310,7 @@ MongoCollection&lt;Document&gt; collection = database.getCollection(&quot;restau
 
 <h2 id="create-the-text-index">Create the <code>text</code> Index</h2>
 
-<p>To create a <a href="http://docs.mongodb.org/manualcore/index-text
+<p>To create a <a href="http://docs.mongodb.org/manual/core/index-text
 ">text index</a>, use the <a href="/mongo-java-driver/3.6/builders/indexes/#text-index"><code>Indexes.text</code></a>
 static helper to create a specification for a text index and pass to <a href="/mongo-java-driver/3.6/javadoc?com/mongodb/client/MongoCollection.html#createIndex-org.bson.conversions.Bson-
 "><code>MongoCollection.createIndex()</code></a> method.</p>
@@ -345,12 +345,12 @@ static helper to create a specification for a text index and pass to <a href="/m
 <pre><code class="language-json">Text search matches: 2
 </code></pre>
 
-<p>For more information on the text search, see <a href="http://docs.mongodb.org/manualreference/operator/query/text
+<p>For more information on the text search, see <a href="http://docs.mongodb.org/manual/reference/operator/query/text
 "><code>$text</code> operator</a>.</p>
 
 <h3 id="text-score">Text Score</h3>
 
-<p>For each matching document, text search assigns a score, representing the relevance of a document to the specified text search query filter. To return and sort by score, use the <a href="http://docs.mongodb.org/manualreference/operator/query/text/#sort-by-text-search-score
+<p>For each matching document, text search assigns a score, representing the relevance of a document to the specified text search query filter. To return and sort by score, use the <a href="http://docs.mongodb.org/manual/reference/operator/query/text/#sort-by-text-search-score
 "><code>$meta</code></a> operator in the projection document and the sort expression.</p>
 
 <pre><code class="language-java">collection.find(Filters.text(&quot;bakery cafe&quot;))
@@ -367,11 +367,11 @@ static helper to create a specification for a text index and pass to <a href="/m
 <h3 id="specify-a-text-search-option">Specify a Text Search Option</h3>
 
 <p>The  <a href="/mongo-java-driver/3.6/javadoc?com/mongodb/client/model/Filters.html#text-java.lang.String-com.mongodb.client.model.TextSearchOptions-
-"><code>Filters.text()</code></a> helper can accept various <a href="http://docs.mongodb.org/manualreference/operator/query/text
+"><code>Filters.text()</code></a> helper can accept various <a href="http://docs.mongodb.org/manual/reference/operator/query/text
 ">text search options</a>. The Java driver provides <a href="/mongo-java-driver/3.6/javadoc?com/mongodb/client/model/TextSearchOptions.html
 "><code>TextSearchOptions</code></a> class to specify these options.</p>
 
-<p>For example, the following text search specifies the <a href="http://docs.mongodb.org/manualreference/text-search-languages
+<p>For example, the following text search specifies the <a href="http://docs.mongodb.org/manual/reference/text-search-languages
 ">text search language</a> option when performing text search for the word <code>cafe</code>:</p>
 
 <pre><code class="language-java">collection.count(Filters.text(&quot;cafe&quot;,
@@ -392,13 +392,13 @@ static helper to create a specification for a text index and pass to <a href="/m
 <p>For more information about text search see the following sections in the MongoDB Server Manual:</p>
 
 <ul>
-<li><p><a href="http://docs.mongodb.org/manualreference/operator/query/text
+<li><p><a href="http://docs.mongodb.org/manual/reference/operator/query/text
 "><code>$text</code> query operator</a></p></li>
 
-<li><p><a href="http://docs.mongodb.org/manualcore/index-text
+<li><p><a href="http://docs.mongodb.org/manual/core/index-text
 "><code>text</code> index</a></p></li>
 
-<li><p><a href="http://docs.mongodb.org/manualreference/text-search-languages
+<li><p><a href="http://docs.mongodb.org/manual/reference/text-search-languages
 ">Text Search Languages</a></p></li>
 </ul>
 <div id="btnv"><div class="pull-left">

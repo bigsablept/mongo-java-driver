@@ -257,7 +257,7 @@
 
 <h2 id="gridfs">GridFS</h2>
 
-<p><a href="http://docs.mongodb.org/manualcore/gridfs
+<p><a href="http://docs.mongodb.org/manual/core/gridfs
 ">GridFS</a> is a specification for storing and retrieving files that exceed the BSON document size limit of 16MB. Instead of storing a file in a single document, GridFS divides a file into parts, or chunks, and stores each of those chunks as a separate document.</p>
 
 <p>When you query a GridFS store for a file, the Java driver will reassemble the chunks as needed.</p>
@@ -296,7 +296,7 @@ import static com.mongodb.client.model.Filters.eq;
 
 <h2 id="create-a-gridfs-bucket">Create a GridFS Bucket</h2>
 
-<p>GridFS stores files in <a href="http://docs.mongodb.org/manualcore/gridfs/#gridfs-collections
+<p>GridFS stores files in <a href="http://docs.mongodb.org/manual/core/gridfs/#gridfs-collections
 ">two collections</a>: a <code>chunks</code> collection stores the file chunks, and a  <code>files</code> collection stores file metadata. The two collections are in a common bucket and the collection names are prefixed with the bucket name.</p>
 
 <p>The Java driver provides the <a href="/mongo-java-driver/3.6/javadoc?com/mongodb/client/gridfs/GridFSBuckets.html#create-com.mongodb.client.MongoDatabase-

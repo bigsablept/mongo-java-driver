@@ -395,10 +395,10 @@ MongoCollection&lt;Document&gt; collection = database.getCollection(&quot;restau
             .forEach(printBlock, callbackWhenFinished);
 </code></pre>
 
-<p>For a list of MongoDB query filter operators, refer to the <a href="http://docs.mongodb.org/manualreference/operator/query
+<p>For a list of MongoDB query filter operators, refer to the <a href="http://docs.mongodb.org/manual/reference/operator/query
 ">MongoDB Manual</a>. For the associated <code>Filters</code> helpers, see <a href="/mongo-java-driver/3.6/javadoc?com/mongodb/client/model/Filters.html
 "><code>Filters</code></a>.
-See also the  <a href="http://docs.mongodb.org/manualtutorial/query-documents
+See also the  <a href="http://docs.mongodb.org/manual/tutorial/query-documents
 ">Query Documents Tutorial</a> for an overview of querying in MongoDB, including specifying filter conditions on arrays and embedded documents.</p>
 
 <h2 id="finditerable">FindIterable</h2>
@@ -412,7 +412,7 @@ See also the  <a href="http://docs.mongodb.org/manualtutorial/query-documents
 
 <h3 id="projections">Projections</h3>
 
-<p>By default, queries in MongoDB return all fields in matching documents. To specify the fields to return in the matching documents, you can specify a <a href="http://docs.mongodb.org/manualtutorial/project-fields-from-query-results/#projection-document
+<p>By default, queries in MongoDB return all fields in matching documents. To specify the fields to return in the matching documents, you can specify a <a href="http://docs.mongodb.org/manual/tutorial/project-fields-from-query-results/#projection-document
 ">projection document</a>.</p>
 
 <p>Consider the following <code>find</code> operation which includes a projection <code>Document</code> which specifies that the matching documents return only the <code>name</code> field, <code>stars</code> field, and the <code>categories</code> field.</p>
@@ -443,7 +443,7 @@ see the <a href="/mongo-java-driver/3.6/driver/tutorials/text-search/">Text Sear
 
 <h3 id="sorts">Sorts</h3>
 
-<p>To sort documents, pass a <a href="http://docs.mongodb.org/manualreference/method/cursor.sort/#cursor.sort
+<p>To sort documents, pass a <a href="http://docs.mongodb.org/manual/reference/method/cursor.sort/#cursor.sort
 ">sort specification document</a> to the <a href="/mongo-java-driver/3.6/javadoc?com/mongodb/async/client/FindIterable.html#sort-org.bson.conversions.Bson-
 "><code>FindIterable.sort()</code></a> method.  The Java driver provides <a href="/mongo-java-driver/3.6/builders/sorts/"><code>Sorts</code></a> helpers to facilitate the sort specification document.</p>
 
@@ -485,9 +485,9 @@ see the <a href="/mongo-java-driver/3.6/driver/tutorials/text-search/">Text Sear
 
 <h2 id="read-preference">Read Preference</h2>
 
-<p>For read operations on <a href="http://docs.mongodb.org/manualreplication/
-">replica sets</a> or <a href="http://docs.mongodb.org/manualsharding/
-">sharded clusters</a>, applications can configure the <a href="http://docs.mongodb.org/manualreference/read-preference
+<p>For read operations on <a href="http://docs.mongodb.org/manual/replication/
+">replica sets</a> or <a href="http://docs.mongodb.org/manual/sharding/
+">sharded clusters</a>, applications can configure the <a href="http://docs.mongodb.org/manual/reference/read-preference
 ">read preference</a> at three levels:</p>
 
 <ul>
@@ -554,9 +554,9 @@ see the <a href="/mongo-java-driver/3.6/driver/tutorials/text-search/">Text Sear
 
 <h2 id="read-concern">Read Concern</h2>
 
-<p>For read operations on <a href="http://docs.mongodb.org/manualreplication/
-">replica sets</a> or <a href="http://docs.mongodb.org/manualsharding/
-">sharded clusters</a>, applications can configure the <a href="http://docs.mongodb.org/manualreference/read-concern
+<p>For read operations on <a href="http://docs.mongodb.org/manual/replication/
+">replica sets</a> or <a href="http://docs.mongodb.org/manual/sharding/
+">sharded clusters</a>, applications can configure the <a href="http://docs.mongodb.org/manual/reference/read-concern
 ">read concern</a> at three levels:</p>
 
 <ul>
@@ -621,7 +621,7 @@ see the <a href="/mongo-java-driver/3.6/driver/tutorials/text-search/">Text Sear
                                                   .withReadConcern(ReadConcern.MAJORITY);
 </code></pre>
 
-<p>You can build <code>MongoClientOptions</code>, <code>MongoDatabase</code>, or <code>MongoCollection</code> to include a combination of read concern, read preference, and <a href="http://docs.mongodb.org/manualreference/write-concern
+<p>You can build <code>MongoClientOptions</code>, <code>MongoDatabase</code>, or <code>MongoCollection</code> to include a combination of read concern, read preference, and <a href="http://docs.mongodb.org/manual/reference/write-concern
 ">write concern</a>.</p>
 
 <p>For example, the following sets all three at the collection level:</p>

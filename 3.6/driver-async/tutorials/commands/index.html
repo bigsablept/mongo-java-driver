@@ -257,7 +257,7 @@
 
 <h2 id="run-commands">Run Commands</h2>
 
-<p>Not all commands have a specific helper. However, you can run any <a href="http://docs.mongodb.org/manualreference/command
+<p>Not all commands have a specific helper. However, you can run any <a href="http://docs.mongodb.org/manual/reference/command
 ">MongoDB command</a> by using the <a href="/mongo-java-driver/3.6/javadoc?com/mongodb/async/client/MongoDatabase.html#runCommand-org.bson.conversions.Bson-com.mongodb.ReadPreference-com.mongodb.async.SingleResultCallback-
 "><code>runCommand()</code></a> method.</p>
 
@@ -294,8 +294,8 @@ MongoDatabase database = mongoClient.getDatabase(&quot;mydb&quot;);
 "><code>Document</code></a>
 object that specifies the command and pass it to the <code>runCommand()</code> method.</p>
 
-<p>The following runs the <a href="http://docs.mongodb.org/manualreference/command/buildInfo
-"><code>buildInfo</code></a> command and the <a href="http://docs.mongodb.org/manualreference/command/collStats
+<p>The following runs the <a href="http://docs.mongodb.org/manual/reference/command/buildInfo
+"><code>buildInfo</code></a> command and the <a href="http://docs.mongodb.org/manual/reference/command/collStats
 "><code>collStats</code></a> method:</p>
 
 <pre><code class="language-java">database.runCommand(new Document(&quot;buildInfo&quot;, 1), new SingleResultCallback&lt;Document&gt;() {
@@ -313,7 +313,7 @@ database.runCommand(new Document(&quot;collStats&quot;, 1), new SingleResultCall
 });
 </code></pre>
 
-<p>For a list of available MongoDB commands, see <a href="http://docs.mongodb.org/manualreference/command
+<p>For a list of available MongoDB commands, see <a href="http://docs.mongodb.org/manual/reference/command
 ">MongoDB commands</a>.</p>
 <div id="btnv"><div class="pull-left">
   <a class="navigation prev" href="/mongo-java-driver/3.6/driver-async/tutorials/gridfs/">

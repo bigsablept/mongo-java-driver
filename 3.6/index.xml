@@ -178,9 +178,10 @@ Prerequisites  The example below requires a restaurants collection in the test d
       
       <guid>/mongo-java-driver/3.6/whats-new/</guid>
       <description>What&amp;rsquo;s New in 3.6 Key new features of the 3.6 Java driver release:
+Change Stream support The 3.6 release adds support for change streams.
+ Change Stream Quick Start Change Stream Quick Start (Async)  Retryable writes The 3.6 release adds support for retryable writes using the retryWrites option in MongoClientOptions.
 Compression The 3.6 release adds support for compression of messages to and from appropriately configured MongoDB servers:
- Compression Tutorial Compression Tutorial (Async)  Change Stream support The 3.6 release adds support for change streams.
- Change Stream Quick Start Change Stream Quick Start (Async)  Causal consistency The 3.6 release adds support for causally consistency.</description>
+ Compression Tutorial Compression Tutorial (Async)  Causal consistency The 3.</description>
     </item>
     
     <item>
@@ -675,7 +676,7 @@ import com.mongodb.Block; import com.mongodb.async.SingleResultCallback; import 
       <description>Installation The recommended way to get started using one of the drivers in your project is with a dependency management system.
 important The MongoDB Async Driver requires either Netty or Java 7.
   MongoDB Async Driver The MongoDB Async Driver provides asynchronous API that can leverage either Netty or Java 7&amp;rsquo;s AsynchronousSocketChannel for fast and non-blocking I/O.
-&amp;lt;dependencies&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.mongodb&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;mongodb-driver-async&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;3.6.0-beta2&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;/dependencies&amp;gt;    dependencies { compile &#39;org.</description>
+&amp;lt;dependencies&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.mongodb&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;mongodb-driver-async&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;3.6.0-rc0&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;/dependencies&amp;gt;    dependencies { compile &#39;org.</description>
     </item>
     
     <item>

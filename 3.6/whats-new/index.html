@@ -259,6 +259,21 @@
 
 <p>Key new features of the 3.6 Java driver release:</p>
 
+<h3 id="change-stream-support">Change Stream support</h3>
+
+<p>The 3.6 release adds support for <a href="http://dochub.mongodb.org/core/changestreams">change streams</a>.</p>
+
+<ul>
+<li><a href="/mongo-java-driver/3.6/driver/tutorials/change-streams/">Change Stream Quick Start</a></li>
+<li><a href="/mongo-java-driver/3.6/driver-async/tutorials/change-streams/">Change Stream Quick Start (Async)</a></li>
+</ul>
+
+<h3 id="retryable-writes">Retryable writes</h3>
+
+<p>The 3.6 release adds support for retryable writes using the <code>retryWrites</code> option in
+<a href="/mongo-java-driver/3.6/javadoc?com/mongodb/MongoClientOptions.html
+"><code>MongoClientOptions</code></a>.</p>
+
 <h3 id="compression">Compression</h3>
 
 <p>The 3.6 release adds support for compression of messages to and from appropriately configured MongoDB servers:</p>
@@ -268,18 +283,17 @@
 <li><a href="/mongo-java-driver/3.6/driver-async/tutorials/compression/">Compression Tutorial (Async)</a></li>
 </ul>
 
-<h3 id="change-stream-support">Change Stream support</h3>
-
-<p>The 3.6 release adds support for <a href="https://docs.mongodb.com/manual/operator/aggregation/changeStream">change streams</a>.</p>
-
-<ul>
-<li><a href="/mongo-java-driver/3.6/driver/tutorials/change-streams/">Change Stream Quick Start</a></li>
-<li><a href="/mongo-java-driver/3.6/driver-async/tutorials/change-streams/">Change Stream Quick Start (Async)</a></li>
-</ul>
-
 <h3 id="causal-consistency">Causal consistency</h3>
 
-<p>The 3.6 release adds support for causally consistency.</p>
+<p>The 3.6 release adds support for <a href="http://dochub.mongodb.org/core/causal-consistency">causally consistency</a> via the new
+<a href="/mongo-java-driver/3.6/javadoc?com/mongodb/session/ClientSession.html
+"><code>ClientSession</code></a> API.</p>
+
+<h3 id="application-configured-server-selection">Application-configured server selection</h3>
+
+<p>The 3.6 release adds support for application-configured control over server selection, using the <code>serverSelector</code> option in
+<a href="/mongo-java-driver/3.6/javadoc?com/mongodb/MongoClientOptions.html
+"><code>MongoClientOptions</code></a>.</p>
 
 <h2 id="what-s-new-in-3-5">What&rsquo;s New in 3.5</h2>
 
@@ -344,7 +358,7 @@ documentation for more information.</p>
 <pre><code class="language-java">import org.bson.types.Decimal128;
 </code></pre>
 
-<p>The <a href="http://docs.mongodb.org/manualrelease-notes/3.4/#decimal-type
+<p>The <a href="http://docs.mongodb.org/manual/release-notes/3.4/#decimal-type
 ">Decimal128</a> format supports numbers with up to 34 decimal digits
 (i.e. significant digits) and an exponent range of −6143 to +6144.</p>
 
@@ -375,12 +389,12 @@ documentation for more information.</p>
 <pre><code class="language-java">import com.mongodb.client.model.Collation;
 </code></pre>
 
-<p><a href="http://docs.mongodb.org/manualreference/collation/
+<p><a href="http://docs.mongodb.org/manual/reference/collation/
 ">Collation</a> allows users to specify language-specific rules for string
 comparison.
 Use the <a href="/mongo-java-driver/3.6/javadoc?com/mongodb/client/model/Collation.html
 "><code>Collation.builder()</code></a>
-to create the <code>Collation</code> object. For example, the following example creates a <code>Collation</code> object with Primary level of comparison and <a href="http://docs.mongodb.org/manualreference/collation-locales-defaults/#supported-languages-and-locales
+to create the <code>Collation</code> object. For example, the following example creates a <code>Collation</code> object with Primary level of comparison and <a href="http://docs.mongodb.org/manual/reference/collation-locales-defaults/#supported-languages-and-locales
 ">locale</a> <code>fr</code>.</p>
 
 <pre><code class="language-java">Collation.builder().collationStrength(CollationStrength.PRIMARY).locale(&quot;fr&quot;).build()));
@@ -484,7 +498,7 @@ collection.bulkWrite(Arrays.asList(
 </code></pre>
 
 <p>For more information on collation, including the supported locales, refer to the
-<a href="http://docs.mongodb.org/manualreference/collation/
+<a href="http://docs.mongodb.org/manual/reference/collation/
 ">manual</a>.</p>
 
 <h3 id="other-mongodb-3-4-features">Other MongoDB 3.4 features</h3>
@@ -494,9 +508,9 @@ collection.bulkWrite(Arrays.asList(
 <a href="https://github.com/mongodb/specifications/blob/master/source/max-staleness/max-staleness.rst">maximum staleness for secondary reads</a></li>
 <li>Support for the
 <a href="https://github.com/mongodb/specifications/blob/master/source/mongodb-handshake/handshake.rst">MongoDB handshake protocol</a>.</li>
-<li>Builders for <a href="http://docs.mongodb.org/manualrelease-notes/3.4/#aggregation
+<li>Builders for <a href="http://docs.mongodb.org/manual/release-notes/3.4/#aggregation
 ">eight new aggregation pipeline stages</a></li>
-<li>Helpers for creating <a href="http://docs.mongodb.org/manualrelease-notes/3.4/#views
+<li>Helpers for creating <a href="http://docs.mongodb.org/manual/release-notes/3.4/#views
 ">read-only views</a></li>
 <li>Support for the <a href="https://docs.mongodb.com/master/release-notes/3.4/#linearizable-read-concern">linearizable read concern</a></li>
 </ul>
@@ -517,9 +531,11 @@ collection.bulkWrite(Arrays.asList(
 <ul>
 <li><a href="#what-s-new-in-3-6">What&rsquo;s New in 3.6</a>
 <ul>
-<li><a href="#compression">Compression</a></li>
 <li><a href="#change-stream-support">Change Stream support</a></li>
+<li><a href="#retryable-writes">Retryable writes</a></li>
+<li><a href="#compression">Compression</a></li>
 <li><a href="#causal-consistency">Causal consistency</a></li>
+<li><a href="#application-configured-server-selection">Application-configured server selection</a></li>
 </ul></li>
 <li><a href="#what-s-new-in-3-5">What&rsquo;s New in 3.5</a>
 <ul>
