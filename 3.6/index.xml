@@ -676,7 +676,7 @@ import com.mongodb.Block; import com.mongodb.async.SingleResultCallback; import 
       <description>Installation The recommended way to get started using one of the drivers in your project is with a dependency management system.
 important The MongoDB Async Driver requires either Netty or Java 7.
   MongoDB Async Driver The MongoDB Async Driver provides asynchronous API that can leverage either Netty or Java 7&amp;rsquo;s AsynchronousSocketChannel for fast and non-blocking I/O.
-&amp;lt;dependencies&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.mongodb&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;mongodb-driver-async&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;3.6.0-rc0&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;/dependencies&amp;gt;    dependencies { compile &#39;org.</description>
+&amp;lt;dependencies&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.mongodb&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;mongodb-driver-async&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;3.6.0-rc1&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;/dependencies&amp;gt;    dependencies { compile &#39;org.</description>
     </item>
     
     <item>
