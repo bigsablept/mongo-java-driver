@@ -466,6 +466,76 @@ all serializable because they are bound to the concrete types <code>Integer</cod
 <p>On their own, instances of <code>GenericTree</code> or <code>GenericClass</code> are not serializable by the <code>PojoCodec</code>. This is because the runtime type parameter
 information is erased by the JVM, and the type parameters cannot be specialized accurately.</p>
 
+<p>The 3.6 release of the driver further improves generic support with the addition of PropertyCodecProviders. The <code>PropertyCodecProvider</code> API
+allows type-safe support of container types by providing concrete type parameters for the generic types as declared in the POJO.</p>
+
+<p>A great use of the <code>PropertyCodecProvider</code> API could be to add support for Guava&rsquo;s <code>Optional</code> class. The following example creates a
+<code>OptionalPropertyCodecProvider</code>:</p>
+
+<pre><code class="language-java">public class OptionalPropertyCodecProvider implements PropertyCodecProvider {
+
+    @Override
+    @SuppressWarnings({&quot;rawtypes&quot;, &quot;unchecked&quot;})
+    public &lt;T&gt; Codec&lt;T&gt; get(final TypeWithTypeParameters&lt;T&gt; type, final PropertyCodecRegistry registry) {
+        // Check the main type and number of generic parameters
+        if (Optional.class.isAssignableFrom(type.getType()) &amp;&amp; type.getTypeParameters().size() == 1) {
+            // Get the codec for the concrete type of the Optional, as its declared in the POJO.
+            Codec&lt;?&gt; valueCodec = registry.get(type.getTypeParameters().get(0));
+            return new OptionalCodec(type.getType(), valueCodec);
+        } else {
+            return null;
+        }
+    }
+
+    private static final class OptionalCodec&lt;T&gt; implements Codec&lt;Optional&lt;T&gt;&gt; {
+        private final Class&lt;Optional&lt;T&gt;&gt; encoderClass;
+        private final Codec&lt;T&gt; codec;
+
+        private OptionalCodec(final Class&lt;Optional&lt;T&gt;&gt; encoderClass, final Codec&lt;T&gt; codec) {
+            this.encoderClass = encoderClass;
+            this.codec = codec;
+        }
+
+        @Override
+        public void encode(final BsonWriter writer, final Optional&lt;T&gt; optionalValue, final EncoderContext encoderContext) {
+            if (optionalValue != null &amp;&amp; optionalValue.isPresent()) {
+                codec.encode(writer, optionalValue.get(), encoderContext);
+            } else {
+                writer.writeNull();
+            }
+        }
+
+        @Override
+        public Optional&lt;T&gt; decode(final BsonReader reader, final DecoderContext context) {
+            return Optional.of(codec.decode(reader, context));
+        }
+
+        @Override
+        public Class&lt;Optional&lt;T&gt;&gt; getEncoderClass() {
+            return encoderClass;
+        }
+    }
+}
+</code></pre>
+
+<p>The <code>OptionalPropertyCodecProvider</code> can be registered via the <code>PojoCodecProvider.builder().register</code> method:</p>
+
+<pre><code class="language-java">CodecProvider pojoCodecProvider = PojoCodecProvider.builder()
+        .register(&quot;org.example.pojos&quot;)
+        .register(new OptionalPropertyCodecProvider())
+        .build();
+</code></pre>
+
+<p>Then <code>Optional</code> classes are fully supported in the POJOs. In the following example a <code>Person</code> has an <code>Optional</code> address and an <code>Optional</code>
+membership id:</p>
+
+<pre><code class="language-java">public class Person {
+    ... 
+    private Optional&lt;Address&gt; optionalAddress;
+    private Optional&lt;Integer&gt;  optionalMembershipId;
+}
+</code></pre>
+
 <h3 id="enum-support">Enum support</h3>
 
 <p>Enums are fully supported. The <code>PojoCodec</code> uses the name of the enum constant as the property value. This is then converted back into an Enum
@@ -516,6 +586,12 @@ default annotations.</li>
 "><code>CLASS_AND_PROPERTY_CONVENTION</code></a>. Sets the
     discriminator key if not set to <code>_t</code> and the discriminator value if not set to the ClassModels simple type name. Also, configures
     the PropertyModels. If the <code>idProperty</code> isn&rsquo;t set and there is a property named <code>_id</code> or <code>id</code> then it will be marked as the <code>idProperty</code>.</li>
+<li>The <a href="/mongo-java-driver/3.6/javadoc?org/bson/codecs/pojo/Conventions.html#SET_PRIVATE_FIELDS_CONVENTION
+"><code>SET_PRIVATE_FIELDS_CONVENTION</code></a>.  Enables
+    private fields to be set directly using reflection, without the need of a setter method. Note this convention is not enabled by default.</li>
+<li>The <a href="/mongo-java-driver/3.6/javadoc?org/bson/codecs/pojo/Conventions.html#USE_GETTERS_FOR_SETTERS
+"><code>USE_GETTERS_FOR_SETTERS</code></a>. Allows getters to be used
+    for Map and Collection properties without setters, the collection/map is then mutated. Note this convention is not enabled by default.</li>
 <li>The <a href="/mongo-java-driver/3.6/javadoc?org/bson/codecs/pojo/Conventions.html#DEFAULT_CONVENTIONS
 "><code>DEFAULT_CONVENTIONS</code></a>, a list containing the
 <code>ANNOTATION_CONVENTION</code> and the <code>CLASS_AND_PROPERTY_CONVENTION</code>.</li>

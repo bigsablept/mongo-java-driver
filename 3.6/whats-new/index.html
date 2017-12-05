@@ -295,6 +295,25 @@
 <a href="/mongo-java-driver/3.6/javadoc?com/mongodb/MongoClientOptions.html
 "><code>MongoClientOptions</code></a>.</p>
 
+<h3 id="pojocodec-improvements">PojoCodec improvements</h3>
+
+<p>The 3.6 release brings new improvements to the <code>PojoCodec</code>:</p>
+
+<ul>
+<li>Improved sub-class and discriminator support.</li>
+<li>Support for custom Collection and Map implementations.</li>
+<li>Improvements to the <code>BsonCreator</code> annotation, which now supports <code>@BsonId</code> and <code>@BsonProperty</code> with values that represent the read name of the property.</li>
+<li>A new <a href="/mongo-java-driver/3.6/javadoc?org/bson/codecs/pojo/PropertyCodecProvider.html
+"><code>PropertyCodecProvider</code></a> API, allowing for easy and type-safe handling of container types.</li>
+<li>Added the <a href="/mongo-java-driver/3.6/javadoc?org/bson/codecs/pojo/Conventions.html#SET_PRIVATE_FIELDS_CONVENTION
+"><code>SET_PRIVATE_FIELDS_CONVENTION</code></a> convention.</li>
+<li>Added the <a href="/mongo-java-driver/3.6/javadoc?org/bson/codecs/pojo/Conventions.html#USE_GETTERS_FOR_SETTERS
+"><code>USE_GETTERS_FOR_SETTERS</code></a> convention.</li>
+</ul>
+
+<p>The MongoDB Java drivers team would like to thank both <a href="https://github.com/jflorencio">Joseph Florencio</a> and <a href="https://github.com/visualage">Qi Liu</a>
+for their excellent contributions to the PojoCodec.</p>
+
 <h2 id="what-s-new-in-3-5">What&rsquo;s New in 3.5</h2>
 
 <p>Key new features of the 3.5 Java driver release:</p>
@@ -536,6 +555,7 @@ collection.bulkWrite(Arrays.asList(
 <li><a href="#compression">Compression</a></li>
 <li><a href="#causal-consistency">Causal consistency</a></li>
 <li><a href="#application-configured-server-selection">Application-configured server selection</a></li>
+<li><a href="#pojocodec-improvements">PojoCodec improvements</a></li>
 </ul></li>
 <li><a href="#what-s-new-in-3-5">What&rsquo;s New in 3.5</a>
 <ul>

@@ -334,8 +334,16 @@ filter. So the above example will render as:</p>
 <p>This example creates a filter that selects all documents where the <code>price</code> field value equals <code>0.99</code> or <code>1.99</code>; and the <code>sale</code> field value
 is equal to <code>true</code> or the <code>qty</code> field value is less than <code>20</code>:</p>
 
-<pre><code class="language-java">and(or(eq(&quot;price&quot;, 0.99), eq(&quot;price&quot;, 1.99)
-    or(eq(&quot;sale&quot;, true), lt(&quot;qty&quot;, 20)))
+<pre><code class="language-java">and(
+    or(
+        eq(&quot;price&quot;, 0.99), 
+        eq(&quot;price&quot;, 1.99)
+    ),
+    or(
+        eq(&quot;sale&quot;, true), 
+        lt(&quot;qty&quot;, 20)
+    )
+)
 </code></pre>
 
 <p>This query cannot be constructed using an implicit and operation, because it uses the <code>$or</code> operator more than once.  So it will render as:</p>
