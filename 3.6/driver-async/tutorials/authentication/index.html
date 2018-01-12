@@ -271,26 +271,10 @@ only available in the MongoDB <a href="http://docs.mongodb.org/manual/administra
 "><code>MongoCredential</code></a> class includes static
 factory methods for each of the supported authentication mechanisms.</p>
 
-<p>To specify a list of these instances, use the <a href="/mongo-java-driver/3.6/javadoc?com/mongodb/async/client/MongoClientSettings.html
-"><code>MongoClientSettings</code></a> and pass as a parameter to the
-<a href="/mongo-java-driver/3.6/javadoc?com/mongodb/async/client/MongoClients.html#create-com.mongodb.async.client.MongoClientSettings-
-"><code>MongoClients.create()</code></a> method.</p>
-
-<p>To specify a single <code>MongoCredential</code> instance, you can also use the <a href="/mongo-java-driver/3.6/javadoc?com/mongodb/ConnectionString.html
-"><code>ConnectionString</code></a> and pass to a
+<p>You can also use the <a href="/mongo-java-driver/3.6/javadoc?com/mongodb/ConnectionString.html
+"><code>ConnectionString</code></a> and pass it to a
 <a href="/mongo-java-driver/3.6/javadoc?com/mongodb/async/client/MongoClients.html#create-com.mongodb.ConnectionString-
 "><code>MongoClients.create()</code></a> method.</p>
-
-<div class="admonition note">
-<h5 class="admonition-title">Note</h5>
-<ul>
-<li><p>You can also specify the credential with a string that specifies the connection URI and pass the string to the <a href="/mongo-java-driver/3.6/javadoc?com/mongodb/async/client/MongoClients.html#create-java.lang.String-"><code>MongoClients.create()</code></a> method that takes the connection string as a parameter.  For brevity, the tutorial omits the examples using the string.</p></li>
-
-<li><p>Given the flexibility of role-based access control in MongoDB, it is usually sufficient to authenticate with a single user, but, for completeness, the driver accepts a list of credentials.</p></li>
-</ul>
-
-</div>
-
 
 <h2 id="default-authentication-mechanism">Default Authentication Mechanism</h2>
 
@@ -318,7 +302,7 @@ ClusterSettings clusterSettings = ClusterSettings.builder()
                                   .hosts(asList(new ServerAddress(&quot;localhost&quot;))).build();
 MongoClientSettings settings = MongoClientSettings.builder()
                                   .clusterSettings(clusterSettings)
-                                  .credentialList(Arrays.asList(credential))
+                                  .credential(credential)
                                   .build();
 MongoClient mongoClient = MongoClients.create(settings);
 </code></pre>
@@ -331,7 +315,7 @@ authentication mechanism:</p>
 </code></pre>
 
 <p>For challenge and response mechanisms, using the default authentication
-mechanism is the recommended approach as the approach will make
+mechanism is the recommended approach as it will make
 upgrading from MongoDB 2.6 to MongoDB 3.0 seamless, even after
 <a href="http://docs.mongodb.org/manual/release-notes/3.0-scram/
 ">upgrading the authentication schema</a>.</p>
@@ -350,7 +334,7 @@ ClusterSettings clusterSettings = ClusterSettings.builder()
                                   .hosts(asList(new ServerAddress(&quot;localhost&quot;))).build();
 MongoClientSettings settings = MongoClientSettings.builder()
                                   .clusterSettings(clusterSettings)
-                                  .credentialList(Arrays.asList(credential))
+                                  .credential(credential)
                                   .build();
 MongoClient mongoClient = MongoClients.create(settings);
 
@@ -378,7 +362,7 @@ ClusterSettings clusterSettings = ClusterSettings.builder()
                                   .hosts(asList(new ServerAddress(&quot;localhost&quot;))).build();
 MongoClientSettings settings = MongoClientSettings.builder()
                                   .clusterSettings(clusterSettings)
-                                  .credentialList(Arrays.asList(credential))
+                                  .credential(credential)
                                   .build();
 MongoClient mongoClient = MongoClients.create(settings);
 </code></pre>
@@ -421,7 +405,7 @@ EventLoopGroup eventLoopGroup = new NioEventLoopGroup();  // make sure applicati
 
 MongoClientSettings settings = MongoClientSettings.builder()
                 .clusterSettings(clusterSettings)
-                .credentialList(Arrays.asList(credential))
+                .credential(credential)
                 .streamFactoryFactory(NettyStreamFactoryFactory.builder().eventLoopGroup(eventLoopGroup).build())
                 .sslSettings(SslSettings.builder().enabled(true).build())
                 .build();
@@ -456,7 +440,7 @@ ClusterSettings clusterSettings = ClusterSettings.builder()
                                   .hosts(asList(new ServerAddress(&quot;localhost&quot;))).build();
 MongoClientSettings settings = MongoClientSettings.builder()
                                   .clusterSettings(clusterSettings)
-                                  .credentialList(Arrays.asList(credential))
+                                  .credential(credential)
                                   .build();
 MongoClient mongoClient = MongoClients.create(settings);
 
@@ -473,14 +457,6 @@ MongoClient mongoClient = MongoClients.create(settings);
 <h5 class="admonition-title">Note</h5>
 <p>The method refers to the <code>GSSAPI</code> authentication mechanism instead of <code>Kerberos</code> because technically the driver is authenticating via the
 <a href="https://tools.ietf.org/html/rfc4752">GSSAPI</a> SASL mechanism.</p>
-
-<p>The <code>GSSAPI</code> authentication mechanism is supported only in the following environments:</p>
-
-<ul>
-<li>Linux: Java 6 and above</li>
-<li>Windows: Java 7 and above with <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa380493">SSPI</a></li>
-<li>OS X: Java 7 and above</li>
-</ul>
 
 </div>
 
@@ -520,6 +496,21 @@ java.security.krb5.kdc=mykdc.myrealm.me
 <pre><code>mongodb://username%40MYREALM.com@myserver/?authMechanism=GSSAPI&amp;authMechanismProperties=SERVICE_NAME:othername
 </code></pre>
 
+<div class="admonition note">
+<h5 class="admonition-title">Note</h5>
+<p>On Windows, Oracle&rsquo;s JRE uses <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa378326.aspx">LSA</a> rather than
+<a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa380493.aspx">SSPI</a> in its implementation of GSSAPI, which limits
+interoperability with Windows Active Directory and in particular the ability to implement single sign-on.</p>
+
+<ul>
+<li><a href="https://bugs.openjdk.java.net/browse/JDK-8054026">JDK-8054026</a></li>
+<li><a href="https://bugs.openjdk.java.net/browse/JDK-6722928">JDK-6722928</a></li>
+<li><a href="https://stackoverflow.com/questions/23427343/cannot-retrieve-tgt-despite-allowtgtsessionkey-registry-entry">SO 23427343</a><br /></li>
+</ul>
+
+</div>
+
+
 <h2 id="ldap-plain">LDAP (PLAIN)</h2>
 
 <p><a href="http://www.mongodb.com/products/mongodb-enterprise">MongoDB Enterprise</a> supports proxy authentication through a Lightweight Directory Access Protocol (LDAP) service. To create a credential of type <a href="/mongo-java-driver/3.6/javadoc?core/authentication/#ldap-proxy-authority-authentication.html
@@ -535,7 +526,7 @@ ClusterSettings clusterSettings = ClusterSettings.builder()
                                   .hosts(asList(new ServerAddress(&quot;localhost&quot;))).build();
 MongoClientSettings settings = MongoClientSettings.builder()
                                   .clusterSettings(clusterSettings)
-                                  .credentialList(Arrays.asList(credential))
+                                  .credential(credential)
                                   .build();
 MongoClient mongoClient = MongoClients.create(settings);
 </code></pre>

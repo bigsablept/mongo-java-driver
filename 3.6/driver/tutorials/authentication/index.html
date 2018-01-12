@@ -273,23 +273,10 @@
 "><code>MongoCredential</code></a> class includes static
 factory methods for each of the supported authentication mechanisms.</p>
 
-<p>To specify a list of these instances, use one of
-several <a href="/mongo-java-driver/3.6/javadoc?com/mongodb/MongoClient.html
-"><code>MongoClient()</code></a> constructors that take a parameter of type
-<code>List &lt;MongoCredential&gt;</code>.</p>
-
-<p>To specify a single <code>MongoCredential</code>, you can also use a <a href="/mongo-java-driver/3.6/javadoc?/com/mongodb/MongoClientURI.html
-"><code>MongoClientURI</code></a> and pass it to a <a href="/mongo-java-driver/3.6/javadoc?com/mongodb/MongoClient.html
+<p>You can also use a <a href="/mongo-java-driver/3.6/javadoc?/com/mongodb/MongoClientURI.html
+"><code>MongoClientURI</code></a> and pass it to a
+<a href="/mongo-java-driver/3.6/javadoc?com/mongodb/MongoClient.html
 "><code>MongoClient()</code></a> constructor that takes a <code>MongoClientURI</code> parameter.</p>
-
-<div class="admonition note">
-<h5 class="admonition-title">Note</h5>
-<p>Given the flexibility of role-based access control in MongoDB, it is
-usually sufficient to authenticate with a single user, but, for
-completeness, the driver accepts a list of credentials.</p>
-
-</div>
-
 
 <h2 id="default-authentication-mechanism">Default Authentication Mechanism</h2>
 
@@ -310,8 +297,7 @@ String database; // the name of the database in which the user is defined
 char[] password; // the password as a character array
 // ...
 MongoCredential credential = MongoCredential.createCredential(user, database, password);
-MongoClient mongoClient = new MongoClient(new ServerAddress(&quot;host1&quot;, 27017),
-                                         Arrays.asList(credential));
+MongoClient mongoClient = new MongoClient(new ServerAddress(&quot;host1&quot;, 27017), credential);
 </code></pre>
 
 <p>Or use a connection string without explicitly specifying the
@@ -322,7 +308,7 @@ MongoClient mongoClient = new MongoClient(uri);
 </code></pre>
 
 <p>For challenge and response mechanisms, using the default authentication
-mechanism is the recommended approach as the approach will make
+mechanism is the recommended approach as it will make
 upgrading from MongoDB 2.6 to MongoDB 3.0 seamless, even after
 <a href="http://docs.mongodb.org/manual/release-notes/3.0-scram/
 ">upgrading the authentication schema</a>.</p>
@@ -341,8 +327,7 @@ char[] password; // the password as a character array
 MongoCredential credential = MongoCredential.createScramSha1Credential(user,
                                                                       database,
                                                                       password);
-MongoClient mongoClient = new MongoClient(new ServerAddress(&quot;host1&quot;, 27017),
-                                             Arrays.asList(credential));
+MongoClient mongoClient = new MongoClient(new ServerAddress(&quot;host1&quot;, 27017), credential);
 </code></pre>
 
 <p>Or use a connection string  that explicitly specifies the
@@ -366,8 +351,7 @@ char[] password; // the password as a character array
 MongoCredential credential = MongoCredential.createMongoCRCredential(user,
                                                                     database,
                                                                     password);
-MongoClient mongoClient = new MongoClient(new ServerAddress(&quot;host1&quot;, 27017),
-                                         Arrays.asList(credential));
+MongoClient mongoClient = new MongoClient(new ServerAddress(&quot;host1&quot;, 27017), credential);
 </code></pre>
 
 <p>Or use a connection string that explicitly specifies the
@@ -405,8 +389,7 @@ MongoCredential credential = MongoCredential.createMongoX509Credential(user);
 MongoClientOptions options = MongoClientOptions.builder().sslEnabled(true).build();
 
 
-MongoClient mongoClient = new MongoClient(new ServerAddress(&quot;host1&quot;, 27017),
-                                         Arrays.asList(credential), options);
+MongoClient mongoClient = new MongoClient(new ServerAddress(&quot;host1&quot;, 27017), credential, options);
 </code></pre>
 
 <p>Or use a connection string that explicitly specifies the
@@ -434,6 +417,7 @@ static factory method:</p>
 <pre><code class="language-java">String user;   // The Kerberos user name, including the realm, e.g. &quot;user1@MYREALM.ME&quot;
 // ...
 MongoCredential credential = MongoCredential.createGSSAPICredential(user);
+MongoClient mongoClient = new MongoClient(new ServerAddress(&quot;host1&quot;, 27017), credential);
 </code></pre>
 
 <p>Or use a connection string that explicitly specifies the
@@ -459,6 +443,48 @@ Java libraries can acquire a Kerberos ticket:</p>
 java.security.krb5.kdc=mykdc.myrealm.me
 </code></pre>
 
+<p>Depending on the Kerberos setup, additional property specifications may be required, either via the application code or, in some cases, the <a href="/mongo-java-driver/3.6/javadoc?com/mongodb/MongoCredential.html#withMechanismProperty-java.lang.String-T-
+">withMechanismProperty()</a> method of the <code>MongoCredential</code> instance:</p>
+
+<ul>
+<li><p><strong><a href="/mongo-java-driver/3.6/javadoc?com/mongodb/MongoCredential.html#SERVICE_NAME_KEY
+"><code>SERVICE_NAME</code></a></strong></p></li>
+
+<li><p><strong><a href="/mongo-java-driver/3.6/javadoc?com/mongodb/MongoCredential.html#CANONICALIZE_HOST_NAME_KEY
+"><code>CANONICALIZE_HOST_NAME</code></a></strong></p></li>
+
+<li><p><strong><a href="/mongo-java-driver/3.6/javadoc?com/mongodb/MongoCredential.html#JAVA_SUBJECT_KEY
+"><code>JAVA_SUBJECT</code></a></strong></p></li>
+
+<li><p><strong><a href="/mongo-java-driver/3.6/javadoc?com/mongodb/MongoCredential.html#JAVA_SASL_CLIENT_PROPERTIES_KEY
+"><code>JAVA_SASL_CLIENT_PROPERTIES</code></a></strong></p></li>
+</ul>
+
+<p>For example, to specify the <code>SERVICE_NAME</code> property via the <code>MongoCredential</code> object:</p>
+
+<pre><code class="language-java">credential = credential.withMechanismProperty(MongoCredential.SERVICE_NAME_KEY, &quot;othername&quot;);
+</code></pre>
+
+<p>Or via the <code>ConnectionString</code>:</p>
+
+<pre><code>mongodb://username%40MYREALM.com@myserver/?authMechanism=GSSAPI&amp;authMechanismProperties=SERVICE_NAME:othername
+</code></pre>
+
+<div class="admonition note">
+<h5 class="admonition-title">Note</h5>
+<p>On Windows, Oracle&rsquo;s JRE uses <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa378326.aspx">LSA</a> rather than
+<a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa380493.aspx">SSPI</a> in its implementation of GSSAPI, which limits
+interoperability with Windows Active Directory and in particular the ability to implement single sign-on.</p>
+
+<ul>
+<li><a href="https://bugs.openjdk.java.net/browse/JDK-8054026">JDK-8054026</a></li>
+<li><a href="https://bugs.openjdk.java.net/browse/JDK-6722928">JDK-6722928</a></li>
+<li><a href="https://stackoverflow.com/questions/23427343/cannot-retrieve-tgt-despite-allowtgtsessionkey-registry-entry">SO 23427343</a><br /></li>
+</ul>
+
+</div>
+
+
 <h2 id="ldap-plain">LDAP (PLAIN)</h2>
 
 <p><a href="http://www.mongodb.com/products/mongodb-enterprise">MongoDB Enterprise</a> supports proxy authentication through a Lightweight Directory Access Protocol (LDAP) service. To create a credential of type <a href="/mongo-java-driver/3.6/javadoc?core/authentication/#ldap-proxy-authority-authentication.html
@@ -470,6 +496,7 @@ java.security.krb5.kdc=mykdc.myrealm.me
 char[] password;      // The LDAP password
 // ...
 MongoCredential credential = MongoCredential.createPlainCredential(user, &quot;$external&quot;, password);
+MongoClient mongoClient = new MongoClient(new ServerAddress(&quot;host1&quot;, 27017), credential);
 </code></pre>
 
 <p>Or use a connection string that explicitly specifies the

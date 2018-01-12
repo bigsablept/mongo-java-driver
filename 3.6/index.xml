@@ -276,7 +276,8 @@ Note MongoDB only creates an index if an index of the same specification does no
       <guid>/mongo-java-driver/3.6/driver/tutorials/authentication/</guid>
       <description>Authentication The Java driver supports all MongoDB authentication mechanisms, including those only available in the MongoDB Enterprise Edition.
 MongoCredential import com.mongodb.MongoCredential;  An authentication credential is represented as an instance of the MongoCredential class. The MongoCredential class includes static factory methods for each of the supported authentication mechanisms.
-To specify a list of these instances, use one of several MongoClient() constructors that take a parameter of type List &amp;lt;MongoCredential&amp;gt;.</description>
+You can also use a MongoClientURI and pass it to a MongoClient() constructor that takes a MongoClientURI parameter.
+Default Authentication Mechanism Starting in MongoDB 3.</description>
     </item>
     
     <item>
@@ -418,8 +419,8 @@ Match The $match pipeline stage passes all documents matching the specified filt
       <guid>/mongo-java-driver/3.6/driver-async/tutorials/authentication/</guid>
       <description>Authentication The Java driver supports all MongoDB authentication mechanisms, including those only available in the MongoDB Enterprise Edition.
 MongoCredential import com.mongodb.MongoCredential;  An authentication credential is represented as an instance of the MongoCredential class. The MongoCredential class includes static factory methods for each of the supported authentication mechanisms.
-To specify a list of these instances, use the MongoClientSettings and pass as a parameter to the MongoClients.create() method.
-To specify a single MongoCredential instance, you can also use the ConnectionString and pass to a MongoClients.</description>
+You can also use the ConnectionString and pass it to a MongoClients.create() method.
+Default Authentication Mechanism Starting in MongoDB 3.0, MongoDB changed the default authentication mechanism from MONGODB-CR to SCRAM-SHA-1.</description>
     </item>
     
     <item>
