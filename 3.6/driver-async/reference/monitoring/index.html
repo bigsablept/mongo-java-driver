@@ -288,8 +288,10 @@ application has multiple <code>MongoClient</code> instances connected to the sam
 
 <pre><code class="language-java">MongoClientSettings settings =
         MongoClientSettings.builder()
-        .applyToConnectionPoolSettings(builder -&gt; builder.addConnectionPoolListener(new JMXConnectionPoolListener()))
-        .build();
+                .connectionPoolSettings(ConnectionPoolSettings.builder()
+                        .addConnectionPoolListener(new JMXConnectionPoolListener())
+                        .build())
+                .build();
 </code></pre>
 
 <h1 id="command-monitoring">Command Monitoring</h1>
