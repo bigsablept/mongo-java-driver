@@ -283,6 +283,17 @@ application has multiple <code>MongoClient</code> instances connected to the sam
 <li><code>checkedOutCount</code>: the current count of connections that are currently in use</li>
 </ul>
 
+<p>JMX connection pool monitoring is disabled by default. To enable it add a <code>com.mongodb.management.JMXConnectionPoolListener</code> instance via
+<code>MongoClientOptions</code>:</p>
+
+<pre><code class="language-java">MongoClientOptions options =
+        MongoClientOptions.builder()
+                .addConnectionPoolListener(new JMXConnectionPoolListener())
+                .build();
+
+
+</code></pre>
+
 <h1 id="command-monitoring">Command Monitoring</h1>
 
 <p>The driver implements the
